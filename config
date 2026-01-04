@@ -1,0 +1,40 @@
+{
+    "layer": "top",
+    "modules-left": ["hyprland/workspaces", "hyprland/mode"],
+    "modules-center": ["clock", "custom/eye_timer"],
+    "modules-right": ["battery", "cpu", "memory"], 
+    
+    "battery": {
+        "format": "{capacity}% {icon}",
+        "format-icons": ["", "", "", "", ""],
+        "format-alt": "{icon} {time}"
+    },
+
+    "clock": {
+        "format": "{:%H:%M}",
+        "format-alt": "{:%a %d-%m %H:%M}"
+    },
+
+    "cpu": {
+        "format": "{}% ",
+        "tooltip": true,
+        "on-click": "kitty --class sys_mon -e btop"
+    },
+
+    "memory": {
+        "format": "{}% ",
+        "tooltip": true,
+        "on-click": "kitty --class sys_mon -e btop"
+    },
+
+    "custom/eye_timer": {
+        "format": "{}",
+        "exec": "python ~/.config/waybar/scripts/eye-timer.py",
+        "return-type": "json",
+        "on-click": "pkill -USR1 -f eye-timer.py",       // Toggle/Pause
+        "on-click-right": "pkill -RTMIN+1 -f eye-timer.py", // Stop
+        "on-click-middle": "pkill -USR2 -f eye-timer.py",  // Reset
+        "restart-interval": 1,
+        "tooltip": true
+    }
+}
